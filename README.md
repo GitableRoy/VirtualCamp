@@ -1,10 +1,10 @@
 # VBoot
 
 ## Contents
-1. [About] (#about)
-2. Prerequisites
-3. [Usage] (#usage)
-4. [Sources] (#sources)
+1. [About](#about)
+2. [Prerequisites](#prerequisites)
+3. [Usage](#usage)
+4. [Sources](#sources)
 
 ## About
 This is a script that automates the process that allows your BootCamp to be run through VirtualBox on macOS.  So far, I have only tested this with Windows 10.
