@@ -22,6 +22,6 @@ There are a few things
 
 ## Sources
 Here are some useful links that helped me create this script.  If the script is not working for you, you would like to contribute to the script, or you just want to do the task manually, check these out!
-(Daniel Phillips' Notes on VirtualBox BootCamp Connection)[https://danielphil.github.io/windows/virtualbox/osx/2015/08/25/virtualbox-boot-camp.html]
-(Jonathan Perkin's Notes on VirtualBox Commands)[https://www.perkin.org.uk/posts/create-virtualbox-vm-from-the-command-line.html]
-(VBoxManage Documentation)[https://www.virtualbox.org/manual/ch08.html]
+* (Daniel Phillips' Notes on VirtualBox BootCamp Connection)[https://danielphil.github.io/windows/virtualbox/osx/2015/08/25/virtualbox-boot-camp.html]
+* (Jonathan Perkin's Notes on VirtualBox Commands)[https://www.perkin.org.uk/posts/create-virtualbox-vm-from-the-command-line.html]
+* (VBoxManage Documentation)[https://www.virtualbox.org/manual/ch08.html]
