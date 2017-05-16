@@ -12,10 +12,10 @@ echo "unmount BOOTCAMP from Volumes"
 diskutil unmount /Volumes/BOOTCAMP/
 
 echo "change permissions for EFI"
-sudo chmod 444 /dev/$efi_identifier
+sudo chmod 640 /dev/$efi_identifier
 
 echo "change permissions for BOOTCAMP"
-sudo chmod 444 /dev/$bootcamp_identifier
+sudo chmod 640 /dev/$bootcamp_identifier
 
 echo "mount BOOTCAMP from Volumes"
 diskutil mount $bootcamp_identifier

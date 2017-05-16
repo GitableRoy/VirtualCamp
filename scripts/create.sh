@@ -6,11 +6,11 @@ vm_name=$2
 user=$(id -un)
 
 bootcamp_number=$(diskutil list disk0 |  grep -a "BOOTCAMP" | cut -d ":" -f1 \
- | rev | cut -c 1-2)
+ | rev | cut -d " " -f1)
 bootcamp_identifier=$(diskutil list disk0 |  grep -a "BOOTCAMP" | \
  cut -d ":" -f2 | rev | cut -d " " -f1 | rev)
 efi_number=$(diskutil list disk0 |  grep -a "EFI" | cut -d ":" -f1 | \
- rev | cut -c 1-2)
+ rev | cut -d " " -f1)
 efi_identifier=$(diskutil list disk0 |  grep -a "EFI" | cut -d ":" -f2 | \
  rev | cut -d " " -f1 | rev)
 
