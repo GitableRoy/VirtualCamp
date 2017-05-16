@@ -22,9 +22,47 @@ There are a few things needed before using this script.
 
 ## Usage
 There are a few things to be used from repository:
-* vcamp.sh:   makes a VM and connects your BootCamp partition to it   
-*             removes your VM and destroys all subsequent files/folders made
-              restores any changes done to BOOTCAMP permissions
+
+```
+vcamp - Connect your VirtualBox VM to your macOS Boot Camp
+
+Usage:
+
+  vcamp [commands] [default, options]
+
+
+Commands:
+
+  create    [-n, -d, -p, -e, -g]    creates a VM for VirtualBox and connects your partition to it
+  remove    [-n, -d, -p,]           removes a VM for VirtualBox and destroys all subsequent files/folders made
+  restore   [-p]                    restores any changes done to partition permissions        
+  -h, --help           
+
+
+General Command Option:
+
+  default                            Use if your Boot Camp was made with the Boot Camp Assistant application on macOS
+
+
+Specific Command Options:
+
+    -n, --name    MACHINE_NAME       Decide on a name for the virtual machine you creating/removing       Default=BOOTCAMP  
+    -d, --dest    DESTINATION        Decide where you want the necessary files to be created/removed      Default=/path/to/VirtualCamp/machines
+    -p, --part    PARTITION_NAME                                                                          Default=BOOTCAMP    
+    -g, --guest   ON/OFF                                                                                  Default=ON
+    -e, --efi     ON/OFF             ON  if your selected partition was made with Boot Camp Assistant     Default=ON
+                                     OFF if your selected partition was made manually
+
+
+Examples:
+
+  vcamp create default
+  vcamp create --name Windows_9 --part Untitled -e OFF -g OFF --dest ~/VirtualBox\ VMs/
+  vcamp remove default
+  vcamp remove -d ~\Desktop -n boot2
+```
+
+## Application
 * VirtualCamp.dmg:  an optional application that shortcuts your VM in your Launchpad/Dock
 
 ## Set Up

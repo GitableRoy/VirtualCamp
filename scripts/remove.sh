@@ -4,6 +4,7 @@
 path=$1
 vm_name=$2
 
+echo "Set to remove: "$vm_name
 exist=$(VBoxManage list vms | grep $vm_name)
 if ! [ -z $exist ]; then
   VBoxManage unregistervm $vm_name --delete
