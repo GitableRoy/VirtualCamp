@@ -118,8 +118,37 @@ else
       fi
       ;;
     restore)
-      echo "Restoring "$part_name" permissions"
-      /bin/bash ./scripts/restore.sh $part_name
+      if [ -z $2 ]; then
+        echo ""
+        echo "restore:"
+        echo -e "\trestore\t default \t\t runs default options"
+        echo -e "\trestore\t [-p|--part <string>] \t select the partition you wish to restore\t default partition is 'BOOTCAMP'"
+        exit 0
+      else
+        while [[ $# -gt 0 ]]
+        do
+          key="$1"
+          case $key in
+            default)
+              echo "Restoring "$part_name" permissions"
+              /bin/bash ./scripts/restore.sh $part_name
+              shift
+            ;;
+            -p|--part)
+              if [ -z $2 ]; then
+                echo "Please enter partition permissions you which to restore"
+                exit 0
+              else
+                part_name=$2
+                echo "Restoring "$part_name" permissions"
+                /bin/bash ./scripts/restore.sh $part_name
+              fi
+              shift
+             ;;
+          esac
+          shift
+         done
+       fi
       exit 0
       ;;
 
