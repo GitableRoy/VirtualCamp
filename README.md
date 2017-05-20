@@ -26,17 +26,16 @@ There are a few things to be used from repository:
 ```
 vcamp - Connect your VirtualBox VM to your macOS Boot Camp
 
-Usage:
+usage:
 
-  vcamp [commands] [default, options]
+  vcamp [commands] [ default | options ]
 
 
 Commands:
 
-  create    [-n, -d, -p, -e, -g]    creates a VM for VirtualBox and connects your partition to it
-  remove    [-n, -d, -p,]           removes a VM for VirtualBox and destroys all subsequent files/folders made
-  restore   [-p]                    restores any changes done to partition permissions        
-  -h, --help           
+  create    default | [-n, -d, -p, -e, -g]    creates a VM for VirtualBox and connects your partition to it
+  remove    default | [-n, -d, -p,]           removes a VM for VirtualBox and destroys all subsequent files/folders made
+  restore   [-p]                              restores any changes done to partition permissions
 
 
 General Command Option:
@@ -46,12 +45,13 @@ General Command Option:
 
 Specific Command Options:
 
-    -n, --name    MACHINE_NAME       Decide on a name for the virtual machine you creating/removing       Default=BOOTCAMP  
-    -d, --dest    DESTINATION        Decide where you want the necessary files to be created/removed      Default=/path/to/VirtualCamp/machines
-    -p, --part    PARTITION_NAME                                                                          Default=BOOTCAMP    
-    -g, --guest   ON/OFF                                                                                  Default=ON
-    -e, --efi     ON/OFF             ON  if your selected partition was made with Boot Camp Assistant     Default=ON
-                                     OFF if your selected partition was made manually
+                                                                                                          DEFAULTS
+                                                                                                          --------
+    -n, --name    MACHINE_NAME       Decide on a name for the virtual machine you creating/removing       BOOTCAMP
+    -d, --dest    DESTINATION        Decide where you want the necessary files to be created/removed      /path/to/VirtualCamp
+    -p, --part    PARTITION_NAME                                                                          BOOTCAMP
+    -g, --guest                      Enable to download and attach compatible VBoxGuestAdditions          Disabled
+    -e, --efi                        Enable if your partition was made with Boot Camp Assistant           Disabled
 
 
 Examples:
@@ -70,7 +70,7 @@ To set up your machine:
 1. Open your Terminal
 2. Clone the repository in desired location
 3. `cd VirtualCamp`
-4. `/bin/bash ./vcamp.sh make default`
+4. `/bin/bash ./vcamp.sh create default`
  * you can select `path` you want your .vmdk and GuestAdditions to be stored
  * you can select the desired `name` for your VM (Note: VirtualCamp.app is set to open a VM named BOOTCAMP, so it won't work if you use another name)
 
