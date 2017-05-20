@@ -2,14 +2,16 @@
 
 # this script is made to change BOOTCAMP permissions back to normal
 
-bootcamp_identifier=$(diskutil list disk0 |  grep -a "BOOTCAMP" | \
+part_name=$1
+
+bootcamp_identifier=$(diskutil list disk0 |  grep -a "$part_name" | \
  cut -d ":" -f2 | rev | cut -d " " -f1 | rev)
 
 efi_identifier=$(diskutil list disk0 |  grep -a "EFI" | cut -d ":" -f2 | \
 rev | cut -d " " -f1 | rev)
 
 echo "unmount BOOTCAMP from Volumes"
-diskutil unmount /Volumes/BOOTCAMP/
+diskutil unmount /Volumes/$part_name/
 
 echo "change permissions for EFI"
 sudo chmod 640 /dev/$efi_identifier

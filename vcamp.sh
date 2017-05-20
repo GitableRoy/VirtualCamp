@@ -1,10 +1,11 @@
 #!/bin/bash
 
 base=$(dirname $0)
-dest=$base"/machines"
+dest=$base
 vm_name="BOOTCAMP"
-partition="BOOTCAMP"
-guest="true"
+part_name="BOOTCAMP"
+guest_toggle=0
+efi_toggle=0
 
 create=0
 remove=0
@@ -12,21 +13,11 @@ restore=0
 valid=0
 
 if [ $# -eq 0 ]; then
-  echo ""
-  echo "Missing command (\"vcamp --help\" for help)"
-  echo ""
+  /bin/bash ./scripts/usage.sh
   exit 0
 else
   case $1 in
-    -h|--help|help)
-      valid=1
-      echo ""
-      echo "usage: "
-      echo -e "\t create \t [default | --options] \t Create a BootCamp box with this option"
-      echo -e "\t remove \t [default | --options] \t Remove a BootCamp box with this option "
-      echo -e "\t restore \t\t\t\t Restore BootCamp default permissions "
-      echo ""
-    ;;
+
     create)
       create=1
       # check if there is an  2 argument
@@ -40,7 +31,7 @@ else
         echo -e "\t create\t [-g|--guest <bool>] \t use'Guest Additions' \t default: true"
         exit 0
       elif [[ $2 = "default" ]]; then
-        /bin/bash ./scripts/create.sh $dest $vm_name $partition
+        /bin/bash ./scripts/create.sh $dest $vm_name $part_name 1 1 # efi and guest on
         exit 0
       else
         while [[ $# -gt 0 ]]
@@ -68,6 +59,16 @@ else
             fi
             shift
             ;;
+          -e|--efi)
+              valid=1
+              efi_toggle=1
+            shift
+           ;;
+          -g|--guest)
+              valid=1
+              guest_toggle=1
+            shift
+           ;;
           esac
           shift
         done
@@ -84,7 +85,7 @@ else
         echo -e "\tremove\t [-p|--dest=<dest>] \t set a dest for vdmk \t\t default is in VirtualCamp/machines/"
         exit 0
       elif [[ $2 = "default" ]]; then
-        /bin/bash ./scripts/remove.sh $dest $vm_name $partition
+        /bin/bash ./scripts/remove.sh $dest $vm_name $part_name
         exit 0
       else
         while [[ $# -gt 0 ]]
@@ -93,7 +94,7 @@ else
           case $key in
             -n|--name)
               if [ -z $2 ]; then
-                echo "Please provide name of VM to erase"
+                echo "Please provide name of VM to erase | default BOOTCAMP"
                 exit 0
               else
                 valid=1
@@ -103,7 +104,7 @@ else
              ;;
            -d|--dest)
              if [ -z $2 ]; then
-               echo "Please provide dest of VM to erase, default search dest ./machines/"
+               echo "Please provide dest of VM to erase | default search dest ./machines/"
                exit 0
              else
                valid=1
@@ -117,8 +118,8 @@ else
       fi
       ;;
     restore)
-      echo "Restoring "$partition" permissions"
-      /bin/bash ./scripts/restore.sh
+      echo "Restoring "$part_name" permissions"
+      /bin/bash ./scripts/restore.sh $part_name
       exit 0
       ;;
 
@@ -128,19 +129,14 @@ fi
 if [ $valid -gt 0 ]; then
 
   if [ $create -gt 0 ]; then
-    /bin/bash ./scripts/create.sh $dest $vm_name $partition
+    /bin/bash ./scripts/create.sh $dest $vm_name $part_name $efi_toggle $guest_toggle
   fi
 
   if [ $remove -gt 0 ]; then
-    /bin/bash ./scripts/remove.sh $dest $vm_name $partition
+    /bin/bash ./scripts/remove.sh $dest $vm_name $part_name
   fi
 else
-  echo ""
-  echo "Invalid use of vcamp"
-  echo ""
-  echo "usage: "
-  echo -e "\t create \t Create a BootCamp box with this option"
-  echo -e "\t remove \t Remove a BootCamp box with this option"
-  echo ""
+  echo "Invalid usage. Read usage details below"
+  /bin/bash ./scripts/usage.sh
   exit 0
 fi
