@@ -6,6 +6,7 @@ vm_name=$2
 partition_name=$3
 efi_toggle=$4
 guest_toggle=$5
+base=$6
 user=$(id -un)
 
 bootcamp_number=$(diskutil list disk0 |  grep -a "BOOTCAMP" | cut -d ":" -f1 \
@@ -45,6 +46,8 @@ sudo chmod 777 /dev/$efi_identifier
 sudo chmod 777 /dev/$bootcamp_identifier
 
 # echo "build a VM"
-echo "LOOK: " $1 $2 $3 $4
 /bin/bash ./scripts/createbox.sh \
  $dest $user $efi_toggle $guest_toggle $vboxguest $vm_name $OS $efi_number $bootcamp_number
+
+ echo "build an app for VM"
+ /bin/bash ./scripts/appbuild.sh $dest $vm_name $base

@@ -13,7 +13,7 @@ curl -o $dest/machines/$vm_name/VBoxGuestAdditions_$version.iso -C - -O \
 echo "Using SHA256SUMS to check legitimacy"
 sum=$(shasum -a 256 $dest/machines/$vm_name/VBoxGuestAdditions_$version.iso | cut -d " " -f1)
 
-check=$(curl http://download.virtualbox.org/virtualbox/$version/SHA256SUMS | grep $sum)
+check=$(curl http://download.virtualbox.org/virtualbox/$version/SHA256SUMS | grep $sum | cut -d " " -f1)
 if ! [ -z $check ]; then
   echo "Safe GuestAdditions downloaded"
 else

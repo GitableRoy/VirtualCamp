@@ -31,7 +31,7 @@ else
         echo -e "\t create\t [-g|--guest <bool>] \t use'Guest Additions' \t default: true"
         exit 0
       elif [[ $2 = "default" ]]; then
-        /bin/bash ./scripts/create.sh $dest $vm_name $part_name 1 1 # efi and guest on
+        /bin/bash ./scripts/create.sh $dest $vm_name $part_name 1 1 $base # efi and guest on
         exit 0
       else
         while [[ $# -gt 0 ]]
@@ -158,7 +158,7 @@ fi
 if [ $valid -gt 0 ]; then
 
   if [ $create -gt 0 ]; then
-    /bin/bash ./scripts/create.sh $dest $vm_name $part_name $efi_toggle $guest_toggle
+    /bin/bash ./scripts/create.sh $dest $vm_name $part_name $efi_toggle $guest_toggle $base
   fi
 
   if [ $remove -gt 0 ]; then
