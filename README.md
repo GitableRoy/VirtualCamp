@@ -4,7 +4,7 @@
 1. [About](#about)
 2. [Prerequisites](#prerequisites)
 3. [Usage](#usage)
-4. [Additional Info](#additional info)
+4. [Additional Info](#additional)
 5. [Sources](#sources)
 
 ## About
