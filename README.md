@@ -4,7 +4,7 @@
 1. [About](#about)
 2. [Prerequisites](#prerequisites)
 3. [Usage](#usage)
-4. [Additional Info](#additional)
+4. [Additional Information](#additional-information)
 5. [Sources](#sources)
 
 ## About
@@ -86,7 +86,7 @@ You can always remove a box by:
   2. Deleting the folder that has the machine's .vmdk
 
 
-## Additional
+## Additional Information
 
 ### Defaults
 This script uses some default settings.  Open your machines settings in VirtualBox to change to desired settings.
