@@ -86,7 +86,7 @@ You can always remove a box by:
   2. Deleting the folder that has the machine's .vmdk
 
 
-## Additional Info
+## Additional
 
 ### Defaults
 This script uses some default settings.  Open your machines settings in VirtualBox to change to desired settings.
