@@ -4,7 +4,8 @@
 1. [About](#about)
 2. [Prerequisites](#prerequisites)
 3. [Usage](#usage)
-4. [Sources](#sources)
+4. [Additional Info](#additional info)
+5. [Sources](#sources)
 
 ## About
 This is a script that automates the process that allows your BootCamp to be run through VirtualBox on macOS.  Note: This has only been tested for Windows 10 but it is coded to work for Windows 7, Vista, 8, 8.1, and 10 (64-bit versions only).
@@ -12,7 +13,8 @@ This is a script that automates the process that allows your BootCamp to be run 
 ## Prerequisites
 There are a few things needed before using this script.
 * BootCamp with Windows already set up
-* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed onto your Mac (latest version 5.1.22 when first tested)
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed onto your Mac (version 5.1.22 used with this script)
+* Optional: Oracle VM VirtualBox Extension Pack may also need to be installed
 * Optional: System Integrity Protection might need to be turned off while setting up (try using script before resorting to this)
   * Start Mac in Recovery Mode
   * Open Terminal under Utilities
@@ -21,8 +23,6 @@ There are a few things needed before using this script.
   * Restart Mac
 
 ## Usage
-There are a few things to be used from repository:
-
 ```
 vcamp - Connect your VirtualBox VM to your macOS Boot Camp
 
@@ -62,10 +62,8 @@ Examples:
   vcamp remove -d ~\Desktop -n boot2
 ```
 
-## Application
-* VirtualCamp.dmg:  an optional application that shortcuts your VM in your Launchpad/Dock
 
-## Set Up
+### Creating a Boot Camp VM
 To set up your machine:
 1. Open your Terminal
 2. Clone the repository in desired location
@@ -74,19 +72,8 @@ To set up your machine:
  * you can select `path` you want your .vmdk and GuestAdditions to be stored
  * you can select the desired `name` for your VM (Note: VirtualCamp.app is set to open a VM named BOOTCAMP, so it won't work if you use another name)
 
-#### Defaults
-This will use default script settings.  Open your machines settings to change to desired settings.
-* Your VM's name will be `BOOTCAMP` [changeable]
-* Your VM's RAM will be 1/4th your actual machines [not-changeable]
-* The GuestAdditions for your version of VirtualBox will be added [not currently changable]
-* Your VM's video ram will be set to 128 [unchangeable]
-
-### Removing a BootCamp VM
-You can always remove a box by:
-1. Going through the VirtualBox GUI
-2. Deleting the folder that has the .vmdk
-
-The vcamp script can also do this for you in one go:
+### Removing a Boot Camp VM
+The vcamp script can do this for you in one go:
 1. Open your Terminal
 2. `cd VirtualCamp`
 3. `/bin/bash ./vcamp.sh remove`
@@ -94,7 +81,56 @@ The vcamp script can also do this for you in one go:
   * Select your VM's `path` or `name` otherwise
     * e.g. `/bin/bash vcamp.sh remove -p ~\Desktop\machines -n boot2`
 
+You can always remove a box by:
+  1. Going through the VirtualBox GUI
+  2. Deleting the folder that has the machine's .vmdk
+
+
+## Additional Info
+
+### Defaults
+This script uses some default settings.  Open your machines settings in VirtualBox to change to desired settings.
+* Your VM's RAM will be 1/4th your actual machines
+* Your VM's video ram will be set to 128
+* Your VM's name will be `BOOTCAMP` if `--name` not used
+* The GuestAdditions for your version of VirtualBox will be added:
+  - If you use `create default`
+  - If you use `create -g`
+  - Install on Windows by going to D:/ through the Boot Camp VM
+
+
+### Machines
+Your VM's essential files can be found under a `machines` folder in the VirtualCamp directory or your selected directory.
+
+### Applications
+An application is built upon creating a BootCamp VM. It can be found under `apps` folder. Its purpose is to directly open your BootCamp VM without the need of VirtualBox. The app can be dragged into your Applications.
+- You can use keep the app in this folder for `vcamp remove` to handle it
+- You can update the icon to whatever you please by right clicking and selecting "Get Info"
+
+### Tab Completion
+There are tab completion features for vcamp.sh. To use go to Terminal and:
+1. `cd /path/to/VirtualCamp/misc`
+2. `chmod +x vcamp-complete.sh`
+3. `source vcamp-complete.sh`
+
+## Known Issues
+#### EFI toggle
+If you get the UEFI Interactive Shell upon booting your VM, you must change toggle on/off your EFI. You can do this by:
+1. Opening VirtualBox.app
+2. Enter your VM's settings
+3. Go to System tab
+4. Under Motherboard, click "Enable EFI"
+5. Exit settings and reboot your VM
+
+#### Dev permissions
+Permissions are restored to partitions 640 instead of 777 when restarting computer.  This issue has only occurred with a manually partitioned Windows and not for Boot Camp Assistant created Windows.  Fix this by:
+1. Rerun `vcamp create` with the exact sub options as before
+2. Manually changing permissions in Terminal
+  - Use `diskutil list` to find EFI and YOUR_PARTITION's identifiers
+  - `chmod 777 /dev/EFI_IDENTIFIER`
+  - `chmod 777 /dev/YOUR_PARTITION_IDENTIFIER`
+
 ## Sources
 Here are some useful links that helped me create this script.  If the script is not working for you, you would like to contribute to the script, or you just want to do the task manually, check these out!
-* [Daniel Phillips' Notes on VirtualBox BootCamp Connection](https://danielphil.github.io/windows/virtualbox/osx/2015/08/25/virtualbox-boot-camp.html)
-* [VBoxManage Documentation](https://www.virtualbox.org/manual/ch08.html)
+1. [Daniel Phillips' Notes on VirtualBox BootCamp Connection](https://danielphil.github.io/windows/virtualbox/osx/2015/08/25/virtualbox-boot-camp.html)
+2. [VBoxManage Documentation](https://www.virtualbox.org/manual/ch08.html)
