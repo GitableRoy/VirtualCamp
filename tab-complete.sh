@@ -54,4 +54,4 @@ _vcamp_tab_complete ()
   return 0
 }
 
-complete -F _vcamp_tab_complete -o filenames ../vcamp.sh
+complete -F _vcamp_tab_complete -o filenames ./vcamp.sh
