@@ -18,4 +18,4 @@ osacompile -o $dest/apps/$vm_name.app -e "do shell script \"
   \""
 
 # echo attaching icon
-cp $base/misc/applet.icns $dest/apps/$vm_name.app/Contents/Resources/
+cp $base/applet.icns $dest/apps/$vm_name.app/Contents/Resources/

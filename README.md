@@ -109,9 +109,9 @@ An application is built upon creating a BootCamp VM. It can be found under `apps
 
 ### Tab Completion
 There are tab completion features for vcamp.sh. To use go to Terminal and:
-1. `cd /path/to/VirtualCamp/misc`
-2. `chmod +x vcamp-complete.sh`
-3. `source vcamp-complete.sh`
+1. `cd /path/to/VirtualCamp`
+2. `chmod +x tab-complete.sh`
+3. `source tab-complete.sh`
 
 ## Known Issues
 #### EFI toggle
