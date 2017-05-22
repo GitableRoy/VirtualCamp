@@ -131,6 +131,6 @@ Permissions are restored to partitions 640 instead of 777 when restarting comput
   - `chmod 777 /dev/YOUR_PARTITION_IDENTIFIER`
 
 ## Sources
-Here are some useful links that helped me create this script.  If the script is not working for you, you would like to contribute to the script, or you just want to do the task manually, check these out!
+Here are some useful links that helped me create this script.  If the script is not working for you or you just want to do the task manually, check these out!
 1. [Daniel Phillips' Notes on VirtualBox BootCamp Connection](https://danielphil.github.io/windows/virtualbox/osx/2015/08/25/virtualbox-boot-camp.html)
 2. [VBoxManage Documentation](https://www.virtualbox.org/manual/ch08.html)
