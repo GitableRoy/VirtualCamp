@@ -47,7 +47,7 @@ Specific Command Options:
 
                                                                                                           DEFAULTS
                                                                                                           --------
-    -n, --name    MACHINE_NAME       Select a name for the virtual machine you creating/removing          BOOTCAMP
+    -n, --name    MACHINE_NAME       Select a name for the virtual machine you creating/removing          VirtualCamp
     -d, --dest    DESTINATION        Select where you want the necessary files to be created/removed      /path/to/VirtualCamp
     -p, --part    PARTITION_NAME     Select the partition that holds Windows                              BOOTCAMP
     -g, --guest                      Enable to download and attach compatible VBoxGuestAdditions          Disabled
@@ -69,8 +69,7 @@ To set up your machine:
 2. Clone the repository in desired location
 3. `cd VirtualCamp`
 4. `/bin/bash ./vcamp.sh create default`
- * you can select `path` you want your .vmdk and GuestAdditions to be stored
- * you can select the desired `name` for your VM (Note: VirtualCamp.app is set to open a VM named BOOTCAMP, so it won't work if you use another name)
+
 
 ### Removing a Boot Camp VM
 The vcamp script can do this for you in one go:
@@ -92,7 +91,7 @@ You can always remove a box by:
 This script uses some default settings.  Open your machines settings in VirtualBox to change to desired settings.
 * Your VM's RAM will be 1/4th your actual machines
 * Your VM's video ram will be set to 128
-* Your VM's name will be `BOOTCAMP` if `--name` not used
+* Your VM's name will be `VirtualCamp` if `--name` not used
 * The GuestAdditions for your version of VirtualBox will be added:
   - If you use `create default`
   - If you use `create -g`

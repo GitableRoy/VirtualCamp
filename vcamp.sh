@@ -2,7 +2,7 @@
 
 base=$(dirname $0)
 dest=$base
-vm_name="BOOTCAMP"
+vm_name="VirtualCamp"
 part_name="BOOTCAMP"
 guest_toggle=0
 efi_toggle=0
@@ -26,7 +26,7 @@ else
         echo "create:"
         echo -e "\t create\t default \t\t runs default options"
         echo ""
-        echo -e "\t create\t [-n|--name <string>] \t give your VM a name \t default name is 'BOOTCAMP"
+        echo -e "\t create\t [-n|--name <string>] \t give your VM a name \t default name is 'VirtualCamp"
         echo -e "\t create\t [-p|--dest=<dest>] \t set a dest for vdmk \t default is in VirtualCamp/machines/"
         echo -e "\t create\t [-g|--guest <bool>] \t use'Guest Additions' \t default: true"
         exit 0
@@ -81,7 +81,7 @@ else
         echo "remove:"
         echo -e "\tremove\t default \t\t runs default options"
         echo ""
-        echo -e "\tremove\t [-n|--name <string>] \t select your VM to delete \t default VM is 'BOOTCAMP'"
+        echo -e "\tremove\t [-n|--name <string>] \t select your VM to delete \t default VM is 'VirtualCamp'"
         echo -e "\tremove\t [-p|--dest=<dest>] \t set a dest for vdmk \t\t default is in VirtualCamp/machines/"
         exit 0
       elif [[ $2 = "default" ]]; then
@@ -94,7 +94,7 @@ else
           case $key in
             -n|--name)
               if [ -z $2 ]; then
-                echo "Please provide name of VM to erase | default BOOTCAMP"
+                echo "Please provide name of VM to erase | default VirtualCamp"
                 exit 0
               else
                 valid=1
@@ -122,7 +122,7 @@ else
         echo ""
         echo "restore:"
         echo -e "\trestore\t default \t\t runs default options"
-        echo -e "\trestore\t [-p|--part <string>] \t select the partition you wish to restore\t default partition is 'BOOTCAMP'"
+        echo -e "\trestore\t [-p|--part <string>] \t select the partition you wish to restore\t default partition is 'VirtualCamp'"
         exit 0
       else
         while [[ $# -gt 0 ]]
