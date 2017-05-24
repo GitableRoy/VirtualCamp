@@ -47,7 +47,7 @@ Specific Command Options:
 
                                                                                                           DEFAULTS
                                                                                                           --------
-    -n, --name    MACHINE_NAME       Select a name for the virtual machine you creating/removing          VirtualCamp
+    -n, --name    MACHINE_NAME       Select a name for the virtual machine you creating/removing          VCamp
     -d, --dest    DESTINATION        Select where you want the necessary files to be created/removed      /path/to/VirtualCamp
     -p, --part    PARTITION_NAME     Select the partition that holds Windows                              BOOTCAMP
     -g, --guest                      Enable to download and attach compatible VBoxGuestAdditions          Disabled
