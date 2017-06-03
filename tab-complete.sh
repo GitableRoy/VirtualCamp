@@ -17,13 +17,14 @@ _vcamp_tab_complete ()
 
   case "$prev" in
     create)
-      case $curr in
-        *)
-          local subopts="default -n -d -p -e -g --name --dest --part --efi --guest"
+      # case $curr in
+      #   *)
+          local subopts="default -n -d -p -e -g -b \
+                         --name --dest --part --efi --guest --bit32"
           COMPREPLY=( $( compgen -W "${subopts}" -- ${curr} ) )
           ;;
-      esac
-      ;;
+      # esac
+      # ;;
 
    remove)
      case $curr in
