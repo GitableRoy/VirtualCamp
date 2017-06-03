@@ -158,7 +158,7 @@ fi
 if [ $valid -gt 0 ]; then
 
   if [ $create -gt 0 ]; then
-    /bin/bash $base/scripts/create.sh $dest $vm_name $part_name $efi_toggle $guest_toggle $base
+    /bin/bash $base/scripts/create.sh $base $dest $vm_name $part_name $efi_toggle $guest_toggle
   fi
 
   if [ $remove -gt 0 ]; then
