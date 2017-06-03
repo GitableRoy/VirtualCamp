@@ -1,17 +1,18 @@
 #!/bin/bash
 
 # Gather neccesary variables
-dest=$1
-vm_name=$2
-partition_name=$3
-efi_toggle=$4
-guest_toggle=$5
-base=$6
+base=$1
+dest=$2
+vm_name=$3
+partition_name=$4
+efi_toggle=$5
+guest_toggle=$6
+
 user=$(id -un)
 
-bootcamp_number=$(diskutil list disk0 |  grep -a "BOOTCAMP" | cut -d ":" -f1 \
+bootcamp_number=$(diskutil list disk0 |  grep -a $partition_name | cut -d ":" -f1 \
  | rev | cut -d " " -f1)
-bootcamp_identifier=$(diskutil list disk0 |  grep -a "BOOTCAMP" | \
+bootcamp_identifier=$(diskutil list disk0 |  grep -a $partition_name | \
  cut -d ":" -f2 | rev | cut -d " " -f1 | rev)
 efi_number=$(diskutil list disk0 |  grep -a "EFI" | cut -d ":" -f1 | \
  rev | cut -d " " -f1)
@@ -50,4 +51,4 @@ sudo chmod 777 /dev/$bootcamp_identifier
  $dest $user $efi_toggle $guest_toggle $vboxguest $vm_name $OS $efi_number $bootcamp_number
 
  echo "build an app for VM"
- /bin/bash ./scripts/appbuild.sh $dest $vm_name $base
+ /bin/bash ./scripts/appbuild.sh $base $dest $vm_name $partition_name $efi_identifier $bootcamp_identifier
