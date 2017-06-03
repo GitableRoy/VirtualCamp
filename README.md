@@ -33,25 +33,26 @@ usage:
 
 Commands:
 
-  create    default | [-n, -d, -p, -e, -g]    creates a VM for VirtualBox and connects your partition to it
-  remove    default | [-n, -d, -p,]           removes a VM for VirtualBox and destroys all subsequent files/folders made
-  restore   [-p]                              restores any changes done to partition permissions
+  create    default | [-n, -d, -p, -e, -g, -b]    creates a VM for VirtualBox and connects your partition to it
+  remove    default | [-n, -d, -p,]               removes a VM for VirtualBox and destroys all subsequent files/folders made
+  restore   [-p]                                  restores any changes done to partition permissions
 
 
 General Command Option:
 
-  default                            Use if your Boot Camp was made with the Boot Camp Assistant application on macOS
+  default                                         Use if your Boot Camp was made with the Boot Camp Assistant application on macOS
 
 
 Specific Command Options:
 
-                                                                                                          DEFAULTS
-                                                                                                          --------
-    -n, --name    MACHINE_NAME       Select a name for the virtual machine you creating/removing          VCamp
-    -d, --dest    DESTINATION        Select where you want the necessary files to be created/removed      /path/to/VirtualCamp
-    -p, --part    PARTITION_NAME     Select the partition that holds Windows                              BOOTCAMP
-    -g, --guest                      Enable to download and attach compatible VBoxGuestAdditions          Disabled
-    -e, --efi                        Enable if your partition was made with Boot Camp Assistant           Disabled
+                                                                                                               DEFAULTS
+                                                                                                               --------
+    -n, --name    MACHINE_NAME            Select a name for the virtual machine you creating/removing          VCamp
+    -d, --dest    DESTINATION             Select where you want the necessary files to be created/removed      /path/to/VirtualCamp
+    -p, --part    PARTITION_NAME          Select the partition that holds Windows                              BOOTCAMP
+    -g, --guest                           Enable to download and attach compatible VBoxGuestAdditions          Disabled
+    -e, --efi                             Enable if your partition was made with Boot Camp Assistant           Disabled
+    -b, --bit32                           Enable if your operating system is 32-bit                            64-bit
 
 
 Examples:
@@ -120,14 +121,6 @@ If you get the UEFI Interactive Shell upon booting your VM, you must change togg
 3. Go to System tab
 4. Under Motherboard, click "Enable EFI"
 5. Exit settings and reboot your VM
-
-#### Dev permissions
-Permissions are restored to partitions 640 instead of 777 when restarting computer.  This issue has only occurred with a manually partitioned Windows and not for Boot Camp Assistant created Windows.  Fix this by either:
-- Rerunning `vcamp create` with the exact sub options as before
-- Manually changing permissions in Terminal
-  - Use `diskutil list` to find EFI and YOUR_PARTITION's identifiers
-  - `chmod 777 /dev/EFI_IDENTIFIER`
-  - `chmod 777 /dev/YOUR_PARTITION_IDENTIFIER`
 
 ## Sources
 Here are some useful links that helped me create this script.  If the script is not working for you or you just want to do the task manually, check these out!

@@ -6,6 +6,7 @@ vm_name="VCamp"
 part_name="BOOTCAMP"
 guest_toggle=0
 efi_toggle=0
+bit_mode=_64
 
 create=0
 remove=0
@@ -13,7 +14,7 @@ restore=0
 valid=0
 
 if [ $# -eq 0 ]; then
-  /bin/bash $base/scripts/usage.sh
+  /bin/bash $base/bin/usage.sh
   exit 0
 else
   case $1 in
@@ -31,7 +32,8 @@ else
         echo -e "\t create\t [-g|--guest <bool>] \t use'Guest Additions' \t default: true"
         exit 0
       elif [[ $2 = "default" ]]; then
-        /bin/bash $base/scripts/create.sh $dest $vm_name $part_name 1 1 $base # efi and guest on
+        /bin/bash $base/bin/create.sh $base $dest $vm_name $part_name \
+                                       1 1 $bit_mode # efi and guest on
         exit 0
       else
         while [[ $# -gt 0 ]]
@@ -69,6 +71,11 @@ else
               guest_toggle=1
             shift
            ;;
+          -b|--bit32)
+             valid=1
+             bit_mode=""
+            shift
+           ;;
           esac
           shift
         done
@@ -85,7 +92,7 @@ else
         echo -e "\tremove\t [-p|--dest=<dest>] \t set a dest for vdmk \t\t default is in VirtualCamp/machines/"
         exit 0
       elif [[ $2 = "default" ]]; then
-        /bin/bash $base/scripts/remove.sh $dest $vm_name $part_name
+        /bin/bash $base/bin/remove.sh $dest $vm_name $part_name
         exit 0
       else
         while [[ $# -gt 0 ]]
@@ -131,7 +138,7 @@ else
           case $key in
             default)
               echo "Restoring "$part_name" permissions"
-              /bin/bash $base/scripts/restore.sh $part_name
+              /bin/bash $base/bin/restore.sh $part_name
               shift
             ;;
             -p|--part)
@@ -141,7 +148,7 @@ else
               else
                 part_name=$2
                 echo "Restoring "$part_name" permissions"
-                /bin/bash $base/scripts/restore.sh $part_name
+                /bin/bash $base/bin/restore.sh $part_name
               fi
               shift
              ;;
@@ -158,14 +165,15 @@ fi
 if [ $valid -gt 0 ]; then
 
   if [ $create -gt 0 ]; then
-    /bin/bash $base/scripts/create.sh $base $dest $vm_name $part_name $efi_toggle $guest_toggle
+    /bin/bash $base/bin/create.sh $base $dest $vm_name $part_name \
+                                  $efi_toggle $guest_toggle $bit_mode
   fi
 
   if [ $remove -gt 0 ]; then
-    /bin/bash $base/scripts/remove.sh $dest $vm_name $part_name
+    /bin/bash $base/bin/remove.sh $dest $vm_name $part_name
   fi
 else
   echo "Invalid usage. Read usage details below"
-  /bin/bash $base/scripts/usage.sh
+  /bin/bash $base/bin/usage.sh
   exit 0
 fi

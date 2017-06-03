@@ -1,21 +1,21 @@
 #!/bin/bash
 
 dest=$1
-user=$2
-efi_toggle=$3
-guest_toggle=$4
-vboxguest=$5
-vm_name=$6
-win_os=$7
-efi_number=$8
-bootcamp_number=$9
+vm_name=$2
+efi_no=$3
+part_no=$4
+efi_toggle=$5
+guest_toggle=$6
+user=$7
+vboxguest=$8
+win_os=$9
 
-memory_size=$(/bin/bash ./scripts/getmacmem.sh)
-CPUS=$(/bin/bash ./scripts/getmaccpu.sh)
+memory_size=$(/bin/bash ./bin/getmacmem.sh)
+CPUS=$(/bin/bash ./bin/getmaccpu.sh)
 
 {
   # echo "create virtual disk out of BOOTCAMP"
-  sudo -u root VBoxManage internalcommands createrawvmdk -rawdisk /dev/disk0 -filename $dest/machines/$vm_name/$win_os.vmdk -partitions $efi_number,$bootcamp_number
+  sudo -u root VBoxManage internalcommands createrawvmdk -rawdisk /dev/disk0 -filename $dest/machines/$vm_name/$win_os.vmdk -partitions $efi_no,$part_no
 
   # echo "make current user the owner of all vmdk files"
   sudo -u root chown $user $dest/machines/$vm_name/*.vmdk
