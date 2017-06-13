@@ -13,8 +13,8 @@ mkdir $dest/apps
 
 # echo creating app for vm
 osacompile -o $dest/apps/$vm_name.app -e "do shell script \"
-   chmod 777 /dev/$efi_id
-   chmod 777 /dev/$part_id
+   sudo chmod 777 /dev/$efi_id
+   sudo chmod 777 /dev/$part_id
    part_mount=\$(diskutil info $part_name | grep Mount | rev | cut -c 1-1)
    if [ $part_mount="s" ]; then
      diskutil unmount $part_name
