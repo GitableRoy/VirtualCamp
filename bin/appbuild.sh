@@ -8,6 +8,7 @@ vm_name=$3
 part_name=$4
 efi_id=$5
 part_id=$6
+icns=$7
 
 mkdir $dest/apps
 
@@ -56,4 +57,4 @@ osacompile -o $dest/apps/$vm_name.app -e "
 "
 
 # echo attaching icon
-cp $base/applet.icns $dest/apps/$vm_name.app/Contents/Resources/
+cp $icns $dest/apps/$vm_name.app/Contents/Resources/applet.icns
