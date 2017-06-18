@@ -8,6 +8,7 @@ part_name=$4
 efi_toggle=$5
 guest_toggle=$6
 bit_mode=$7
+icns=$8
 
 user=$(id -un)
 
@@ -51,4 +52,5 @@ sudo chmod 777 /dev/$part_id
                              $efi_toggle $guest_toggle $user $vboxguest $win_os
 
  # echo "build an app for VM"
- /bin/bash ./bin/appbuild.sh $base $dest $vm_name $part_name $efi_id $part_id
+ /bin/bash ./bin/appbuild.sh $base $dest $vm_name $part_name \
+                             $efi_id $part_id $icns
