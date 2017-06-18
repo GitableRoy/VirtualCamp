@@ -7,6 +7,7 @@ part_name="BOOTCAMP"
 guest_toggle=0
 efi_toggle=0
 bit_mode=_64
+icns=$base/applet.icns
 
 create=0
 remove=0
@@ -33,7 +34,7 @@ else
         exit 0
       elif [[ $2 = "default" ]]; then
         /bin/bash $base/bin/create.sh $base $dest $vm_name $part_name \
-                                       1 1 $bit_mode # efi and guest on
+                                       1 1 $bit_mode $icns # efi and guest on
         exit 0
       else
         while [[ $# -gt 0 ]]
@@ -49,33 +50,43 @@ else
                 vm_name=$2
               fi
               shift
-             ;;
-           -d|--dest)
-            valid=1
-            if [ -z $2 ]; then
-              echo "Please provide desired dest"
-              exit 0
-            else
-              valid=1
-              dest=$2
-            fi
-            shift
             ;;
-          -e|--efi)
+            -d|--dest)
+              valid=1
+              if [ ! -d $2 ]; then
+                echo "Please provide a proper destination for VM"
+                exit 0
+              else
+                valid=1
+                dest=$2
+              fi
+              shift
+            ;;
+            -e|--efi)
               valid=1
               efi_toggle=1
-            shift
-           ;;
-          -g|--guest)
+              shift
+            ;;
+            -g|--guest)
               valid=1
               guest_toggle=1
-            shift
-           ;;
-          -b|--bit32)
-             valid=1
-             bit_mode=""
-            shift
-           ;;
+              shift
+            ;;
+            -b|--bit32)
+              valid=1
+              bit_mode=""
+              shift
+            ;;
+            -i|--icns)
+              valid=1
+              if [[ -f $2 && "$2" == *"icns"* ]]; then
+                icns=$2
+              else
+                echo "Please provide a proper ICNS file"
+                exit 0
+              fi
+              shift
+            ;;
           esac
           shift
         done
@@ -110,7 +121,7 @@ else
               shift
              ;;
            -d|--dest)
-             if [ -z $2 ]; then
+             if [ ! -d $2 ]; then
                echo "Please provide dest of VM to erase | default search dest $base/machines/"
                exit 0
              else
@@ -166,7 +177,7 @@ if [ $valid -gt 0 ]; then
 
   if [ $create -gt 0 ]; then
     /bin/bash $base/bin/create.sh $base $dest $vm_name $part_name \
-                                  $efi_toggle $guest_toggle $bit_mode
+                                  $efi_toggle $guest_toggle $bit_mode $icns
   fi
 
   if [ $remove -gt 0 ]; then

@@ -33,9 +33,9 @@ usage:
 
 Commands:
 
-  create    default | [-n, -d, -p, -e, -g, -b]    creates a VM for VirtualBox and connects your partition to it
-  remove    default | [-n, -d, -p,]               removes a VM for VirtualBox and destroys all subsequent files/folders made
-  restore   [-p]                                  restores any changes done to partition permissions
+  create    default | [-n, -d, -p, -e, -g, -b, -i]    creates a VM for VirtualBox and connects your partition to it
+  remove    default | [-n, -d, -p,]                   removes a VM for VirtualBox and destroys all subsequent files/folders made
+  restore   [-p]                                      restores any changes done to partition permissions
 
 
 General Command Option:
@@ -53,6 +53,7 @@ Specific Command Options:
     -g, --guest                           Enable to download and attach compatible VBoxGuestAdditions          Disabled
     -e, --efi                             Enable if your partition was made with Boot Camp Assistant           Disabled
     -b, --bit32                           Enable if your operating system is 32-bit                            64-bit
+    -i, --icns    filename.icns           Select an ICNS that you want your app to display                     VirtualCamp/applet.icns
 
 
 Examples:

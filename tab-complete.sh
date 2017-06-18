@@ -19,8 +19,8 @@ _vcamp_tab_complete ()
     create)
       # case $curr in
       #   *)
-          local subopts="default -n -d -p -e -g -b \
-                         --name --dest --part --efi --guest --bit32"
+          local subopts="default -n -d -p -e -g -b -i \
+                         --name --dest --part --efi --guest --bit32 --icns"
           COMPREPLY=( $( compgen -W "${subopts}" -- ${curr} ) )
           ;;
       # esac
